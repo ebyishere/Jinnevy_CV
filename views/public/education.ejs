@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Education</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+  <h2 class="mb-4">Education</h2>
+
+  <% education.forEach(e => { %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= e.qualification %></h5>
+        <h6 class="text-muted"><%= e.institution %></h6>
+        <p><%= e.start_year %> - <%= e.end_year %></p>
+        <p><%= e.description %></p>
+      </div>
+    </div>
+  <% }) %>
+
+</div>
+
+</body>
+</html>

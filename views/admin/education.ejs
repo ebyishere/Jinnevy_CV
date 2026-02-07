@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Education</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2>Education</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Institution</th>
+        <th>Qualification</th>
+        <th>Start Year</th>
+        <th>End Year</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% education.forEach(e => { %>
+      <tr>
+        <td><%= e.institution %></td>
+        <td><%= e.qualification %></td>
+        <td><%= e.start_year %></td>
+        <td><%= e.end_year %></td>
+        <td><%= e.description %></td>
+        <td>
+          <a href="/admin/education/edit/<%= e.id %>" class="btn btn-sm btn-warning">Edit</a>
+          <a href="/admin/education/delete/<%= e.id %>" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <h3>Add New Education</h3>
+  <form action="/admin/education" method="POST">
+    <div class="mb-3">
+      <label>Institution</label>
+      <input type="text" name="institution" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Qualification</label>
+      <input type="text" name="qualification" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Start Year</label>
+      <input type="number" name="start_year" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>End Year</label>
+      <input type="number" name="end_year" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Description</label>
+      <textarea name="description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Education</button>
+  </form>
+
+  <a href="/admin/dashboard" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+</body>
+</html>

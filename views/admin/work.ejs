@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Work Experience</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2>Work Experience</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Position</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% work.forEach(w => { %>
+      <tr>
+        <td><%= w.company %></td>
+        <td><%= w.position %></td>
+        <td><%= w.start_date.toISOString().split('T')[0] %></td>
+        <td><%= w.end_date ? w.end_date.toISOString().split('T')[0] : '' %></td>
+        <td><%= w.description %></td>
+        <td>
+          <a href="/admin/work/edit/<%= w.id %>" class="btn btn-sm btn-warning">Edit</a>
+          <a href="/admin/work/delete/<%= w.id %>" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <h3>Add New Work</h3>
+  <form action="/admin/work" method="POST">
+    <div class="mb-3">
+      <label>Company</label>
+      <input type="text" name="company" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Position</label>
+      <input type="text" name="position" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Start Date</label>
+      <input type="date" name="start_date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>End Date</label>
+      <input type="date" name="end_date" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label>Description</label>
+      <textarea name="description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Work</button>
+  </form>
+
+  <a href="/admin/dashboard" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+</body>
+</html>
